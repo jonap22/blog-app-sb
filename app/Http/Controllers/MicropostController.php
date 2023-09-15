@@ -16,7 +16,7 @@ class MicropostController extends Controller
     public function index(): Response
     {
         return Inertia::render('Microposts/Index', [
-            //
+            'microposts' => Micropost::with('user:id,name')->latest()->get(),
         ]);
     }
 

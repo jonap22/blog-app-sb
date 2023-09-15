@@ -3,6 +3,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm, Head } from '@inertiajs/vue3';
+import Micropost from "@/Components/Micropost.vue";
+
+defineProps(['microposts']);
 
 const form = useForm({
     message: '',
@@ -23,6 +26,15 @@ const form = useForm({
                 <InputError :message="form.errors.message" class="mt-2" />
                 <PrimaryButton class="mt-4">Post</PrimaryButton>
             </form>
+
+            <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+                <Micropost
+                    v-for="micropost in microposts"
+                    :key="micropost.id"
+                    :micropost="micropost"
+                />
+
+            </div>
         </div>
     </AuthenticatedLayout>
 </template>
