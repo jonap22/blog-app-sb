@@ -61,9 +61,17 @@ class MicropostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Micropost $micropost)
+    public function update(Request $request, Micropost $micropost): RedirectResponse
     {
-        //
+        $this->authorize('update', $micropost);
+
+        $validated = $request->validate([
+            'message' => 'required|string|max:255',
+        ]);
+
+        $micropost->update($validated);
+
+        return redirect(route('microposts.index'));
     }
 
     /**
