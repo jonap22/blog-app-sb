@@ -1,6 +1,7 @@
 <script setup>
 import Dropdown from '@/Components/Dropdown.vue';
 import InputError from '@/Components/InputError.vue';
+import DropdownLink from '@/Components/DropdownLink.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -43,6 +44,9 @@ const editing = ref(false);
                         <button class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out" @click="editing = true">
                             Edit
                         </button>
+                        <DropdownLink as="button" :href="route('microposts.destroy', micropost.id)" method="delete">
+                            Delete
+                        </DropdownLink>
                     </template>
                 </Dropdown>
             </div>

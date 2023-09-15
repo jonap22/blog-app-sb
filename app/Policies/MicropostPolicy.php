@@ -45,7 +45,7 @@ class MicropostPolicy
      */
     public function delete(User $user, Micropost $micropost): bool
     {
-        //
+        return $this->update($user, $micropost);
     }
 
     /**

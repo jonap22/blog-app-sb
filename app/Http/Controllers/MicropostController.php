@@ -77,8 +77,12 @@ class MicropostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Micropost $micropost)
+    public function destroy(Micropost $micropost): RedirectResponse
     {
-        //
+        $this->authorize('delete', $micropost);
+
+        $micropost->delete();
+
+        return redirect(route('microposts.index'));
     }
 }
